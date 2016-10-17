@@ -1,4 +1,4 @@
-package com.db;
+package com.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.db.connector.SQLiteConnection;
+import com.db.connector.SQLConnection;
 
-public class TaskerMain {
+public class TaskerDAO {
 
 	public static void CreateTask(String taskName, String goalTime, int priority) {
 
@@ -16,7 +16,7 @@ public class TaskerMain {
 		PreparedStatement ps = null;
 		String query = "INSERT INTO task (task_name, goal_time, priority, status)" + " VALUES (?,?,?,1)";
 		try {
-			conn = SQLiteConnection.getDBConnection();
+			conn = SQLConnection.getDBConnection();
 			ps = conn.prepareStatement(query);
 
 			ps.setString(1, taskName);
@@ -51,7 +51,7 @@ public class TaskerMain {
 		Connection conn = null;
 		String query = "SELECT task.id, task.task_name, task.goal_time, priority.priority_name, status.status_name FROM task" + " JOIN priority ON task.priority = priority.id JOIN status ON task.status = status.id;";
 		try {
-			conn = SQLiteConnection.getDBConnection();
+			conn = SQLConnection.getDBConnection();
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
@@ -82,7 +82,7 @@ public class TaskerMain {
 		String query = "SELECT task.id, task.task_name, task.goal_time, priority.priority_name, status.status_name FROM task" + " JOIN priority ON task.priority = priority.id JOIN status ON task.status = status.id" + " WHERE status.status_name = \""
 				+ status + "\";";
 		try {
-			conn = SQLiteConnection.getDBConnection();
+			conn = SQLConnection.getDBConnection();
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			while (rs.next()) {
@@ -113,7 +113,7 @@ public class TaskerMain {
 		PreparedStatement ps = null;
 		String query = "UPDATE task SET status = ? WHERE id = ?;";
 		try {
-			conn = SQLiteConnection.getDBConnection();
+			conn = SQLConnection.getDBConnection();
 			ps = conn.prepareStatement(query);
 
 			ps.setInt(1, status);

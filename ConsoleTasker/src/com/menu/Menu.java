@@ -15,7 +15,8 @@ public class Menu {
         entries.add(new MenuEntry("Exit") {
             @Override
             public void run() {
-                isExit = true;
+            	isExit = true;
+            	System.out.println("Good bye !");
             }
         });
     }

@@ -2,7 +2,7 @@ package com.main;
 
 import java.util.Scanner;
 
-import com.db.TaskerMain;
+import com.dao.TaskerDAO;
 import com.menu.Menu;
 import com.menu.MenuEntry;
 
@@ -25,14 +25,14 @@ public class App {
     			
     			System.out.println("Please input: Priority (1-Low...4-Immediately)");
     			int priority = Integer.parseInt(sc.nextLine()); 
-            	TaskerMain.CreateTask(taskName, goalTime, priority);
+            	TaskerDAO.CreateTask(taskName, goalTime, priority);
             }
         });
         
         menu.addEntry(new MenuEntry("Get Tasks") {
             @Override
             public void run() {
-                TaskerMain.getTasks();
+                TaskerDAO.getTasks();
                 
             }
         });
@@ -43,7 +43,7 @@ public class App {
     			System.out.println("Please enter the status (New, In progress, Done or Expired)");
     			Scanner sc = new Scanner(System.in);
     			String status = sc.nextLine();
-    			TaskerMain.getTasksByStatus(status);
+    			TaskerDAO.getTasksByStatus(status);
     		}
     	});
         
@@ -58,7 +58,7 @@ public class App {
     			System.out.println("Please input: status (New - 1, In progress - 2, Done - 3, Expired - 4)");
     			int status = Integer.parseInt(sc.nextLine());
     			
-            	TaskerMain.UpdateStatus(taskId, status);
+            	TaskerDAO.UpdateStatus(taskId, status);
     		}
     	});
         

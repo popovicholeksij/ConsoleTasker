@@ -2,7 +2,7 @@ package com.db.connector;
 import java.sql.*;
 
 
-public class SQLiteConnection {
+public class SQLConnection {
 
 	public static Connection getDBConnection(){
 			
