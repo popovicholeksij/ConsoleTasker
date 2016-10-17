@@ -1,4 +1,4 @@
-package com.db.connector;
+package com.dao.connector;
 import java.sql.*;
 
 
